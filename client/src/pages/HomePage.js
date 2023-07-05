@@ -75,7 +75,7 @@ const HomePage = () => {
             try {
                 const user = JSON.parse(localStorage.getItem('user'))
                 setLoading(true)
-                const res = await axios.post('/api/v1/transactions/get-transaction', {
+                const res = await axios.post('/transactions/get-transaction', {
                     userid: user._id,
                     frequency,
                     selectedDate,
@@ -83,7 +83,6 @@ const HomePage = () => {
                 })
                 setLoading(false)
                 setAllTranscation(res.data)
-                console.log(res.data)
 
             } catch (error) {
                 console.log(error);
@@ -98,14 +97,13 @@ const HomePage = () => {
     const handleDelete = async (record) => {
         try {
             setLoading(true);
-            await axios.post("/api/v1/transactions/delete-transaction", {
+            await axios.post("/transactions/delete-transaction", {
                 transacationId: record._id,
             });
             setLoading(false);
             message.success("Transaction Deleted!");
         } catch (error) {
             setLoading(false);
-            console.log(error);
             message.error("Unable to delete");
 
         }
@@ -121,7 +119,7 @@ const HomePage = () => {
             const user = JSON.parse(localStorage.getItem('user'))
             setLoading(true)
             if (editable) {
-                await axios.post("/api/v1/transactions/edit-transaction", {
+                await axios.post("/transactions/edit-transaction", {
                     payload: {
                         ...values,
                         userId: user._id,
@@ -132,7 +130,7 @@ const HomePage = () => {
                 message.success("Transaction Updated Successfully");
             }
             else {
-                await axios.post("/api/v1/transactions/add-transaction", {
+                await axios.post("/transactions/add-transaction", {
                     ...values,
                     userid: user._id,
                 });
@@ -165,17 +163,13 @@ const HomePage = () => {
                             onChange={(values) => setSelectedate(values)} />
                         )}
                 </div>
-                <div>
+                <div className="filter-tab ">
                     <h6>Select Type</h6>
                     <Select value={type} onChange={(values) => setType(values)}>
                         <Select.Option value="all" >All</Select.Option>
                         <Select.Option value="income" >Income</Select.Option>
                         <Select.Option value="expense">Expense</Select.Option>
                     </Select>
-                    {frequency === 'custom' &&
-                        (<RangePicker value={selectedDate}
-                            onChange={(values) => setSelectedate(values)} />
-                        )}
                 </div>
                 <div className="switch-icons">
                     <UnorderedListOutlined className={`mx-2 ${viewData === "table" ? "active-icon" : "inactive-icon"
@@ -237,7 +231,10 @@ const HomePage = () => {
                         <Input type="text" />
                     </Form.Item>
                     <div className="d-flex justify-content-end">
-                        <button type="submit" className="btn btn-primary"> SAVE</button>
+                        <button type="submit" className="btn btn-primary">
+                            {" "}
+                            SAVE
+                        </button>
                     </div>
                 </Form>
             </Modal>

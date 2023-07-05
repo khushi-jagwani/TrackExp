@@ -14,9 +14,9 @@ const Login = () => {
     const submitHandler = async (values) => {
         try {
             setLoading(true);
-            const { data } = await axios.post('/api/v1/users/login', values)
-            message.success('Login Successful');
+            const { data } = await axios.post('/users/login', values)
             setLoading(false);
+            message.success('Login Successful');
             localStorage.setItem('user', JSON.stringify({ ...data.user, password: '' }))
             navigate('/')
         } catch (error) {
@@ -51,7 +51,7 @@ const Login = () => {
                             </Form.Item>
                             <div className='d-flex justify-content-between'>
                                 <Link to='/register'>Not a user? Click Here to Register </Link>
-                                <button className='btn btn-primary'>Login</button>
+                                <button className='btn'>Login</button>
                             </div>
                         </Form>
                     </div>

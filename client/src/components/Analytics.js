@@ -1,6 +1,6 @@
 import React from "react";
 import { Progress } from "antd";
-const Analytics = ({ allTransaction: allTransaction }) => {
+const Analytics = ({ allTransaction }) => {
     // category
     const categories = [
         "salary",
@@ -47,7 +47,7 @@ const Analytics = ({ allTransaction: allTransaction }) => {
             <div className="row m-3">
                 <div className="col-md-3">
                     <div className="card">
-                        <div className="card-header bg-dark p-2 text-light">
+                        <div className="bg-dark p-2 text-light">
                             Total Transactions : {totalTransaction}
                         </div>
                         <div className="card-body">
@@ -76,7 +76,7 @@ const Analytics = ({ allTransaction: allTransaction }) => {
                 </div>
                 <div className="col-md-3">
                     <div className="card">
-                        <div className="card-header bg-dark p-2 text-light">Total TurnOver : {totalTurnover}</div>
+                        <div className="bg-dark p-2 text-light">Total Turn Over : {totalTurnover}</div>
                         <div className="card-body">
                             <h5 className="text-success">Income : {totalIncomeTurnover}</h5>
                             <h5 className="text-danger">Expense : {totalExpenseTurnover}</h5>

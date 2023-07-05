@@ -15,13 +15,12 @@ const Register = () => {
     const submitHandler = async (values) => {
         try {
             setLoading(true);
-            await axios.post('/api/v1/users/register', values)
+            await axios.post('/users/register', values)
             message.success('Registration successful')
             navigate('/login')
             setLoading(false);
         } catch (error) {
             setLoading(false);
-            console.log('Registration error:', error);
             message.error('invalid username or password');
         }
     };
@@ -50,7 +49,7 @@ const Register = () => {
                     </Form.Item>
                     <div className='d-flex justify-content-between'>
                         <Link to='/login'>Already Registered ? Click Here </Link>
-                        <button className='btn btn-primary'>Register</button>
+                        <button className='btn'>Register</button>
                     </div>
                 </Form>
             </div>

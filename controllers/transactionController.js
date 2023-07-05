@@ -21,7 +21,7 @@ const getAllTransaction = async (req, res) => {
             userid: req.body.userid,
             ...(type !== 'all' && { type }),
         });
-        res.status(201).json(transactions);
+        res.status(200).json(transactions);
     } catch (error) {
         console.log(error);
         res.status(500).json(error);
@@ -38,7 +38,7 @@ const deleteTransaction = async (req, res) => {
         console.log(error)
         res.status(500).json(error);
     }
-}
+};
 
 const editTransaction = async (req, res) => {
     try {
@@ -46,7 +46,7 @@ const editTransaction = async (req, res) => {
             { _id: req.body.transacationId },
             req.body.payload
         );
-        res.status(200).send("Edit Successfully");
+        res.status(200).send("Edited Successfully");
     } catch (error) {
         console.log(error)
         res.status(500).json(error);
